@@ -1,1 +1,1 @@
-Learning Project Django -->Backend
+Learning Project Django --> Backend
