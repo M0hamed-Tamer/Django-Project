@@ -6,8 +6,12 @@ def job_list(request):
     print(job_list)
     context = {}
     # object all jobs
-    return render(request, 'job/job_list.html',context)
+    return render(request, 'job/jobs.html',context)
     
 def job_detail(request):
-    pass
+    job_id = request.GET.get('job_id')
+    job = Job.objects.get(id=job_id)
+    context = {}
+    context['job'] = job
+    return render(request, 'job/job_detail.html', context)
     
