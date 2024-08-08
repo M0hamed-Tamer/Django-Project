@@ -3,15 +3,19 @@ from .models import Job
 # Create your views here.
 def job_list(request):
     job_list = Job.objects.all()
-    print(job_list)
-    context = {}
-    # object all jobs
-    return render(request, 'job/jobs.html',context)
     
-def job_detail(request):
-    job_id = request.GET.get('job_id')
-    job = Job.objects.get(id=job_id)
-    context = {}
-    context['job'] = job
+
+    
+    context = {'jobs': job_list}
+
+    return render(request, 'job/views_modils.html',context)    
+def job_detail(request, id):
+    # احصل على الوظيفة باستخدام المعامل الذي تم تمريره عبر الـ URL
+    job = Job.objects.get(id=id)
+    
+    # جهز القالب مع البيانات المناسبة
+    context = {
+        'job': job
+    }
+    
     return render(request, 'job/job_detail.html', context)
-    
